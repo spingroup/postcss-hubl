@@ -15,7 +15,7 @@ class HublParser extends Parser {
       token = this.tokenizer.nextToken();
       // let nextT = this.tokenizer.nextToken();
       // this.logToken(token);
-      console.log(token);
+      // console.log(token);
 
       switch (token[0]) {
         case 'space':
@@ -69,12 +69,10 @@ class HublParser extends Parser {
     let text = token[1];
     node.raws.hubl = true;
     node.text = text;
-    node.raws.left = " al;ksdjf;laksjd";
+    node.raws.left = "";
     node.raws.right = '';
     node.raws.before = '\n';
     node.raws.after = '\n';
-    console.log('HUBL FIRE -------------------')
-    console.log(node);
     console.log('HUBL FIRE -------------------')
   }
 
