@@ -1,8 +1,5 @@
 # postcss-hubl syntax
-
-**Currently does not work with css-loader** *A PR has been made with css-loader team. Will remove warning when merged.* 
-
-In it's current state it only works reliably using postcss as a standalone plugin. 
+**This plugin is still in testing phases. Consider it a beta. It will work with most webpack configurations**
 
 ## Purpose 
 
@@ -27,15 +24,15 @@ All of which are extensions of their respective base postcss counterparts.
 
 **postcss.config.js**
 ```js {title: postcss.config.js}
-const HublSyntax = require('@spingroup/postcss-hubl/lib/hubl-syntax');
+const HublParser = require('@spingroup/postcss-hubl/hubl-parse');
 
 module.exports = {
-  syntax: HublSyntax,
+  parser: HublParse,
   plugins: []
 };
 ```
 
-Now you can write native hubl syntax inside of your css files and postcss will recognize it as valid markup. Output should be 1:1.
+Now you can write native hubl syntax inside of your css files and postcss will recognize it as valid markup. The parser will output the hubl inside of a comment so that any linting and other build tools will not fail. Your Hubl expressions will still run as long as they are not inside of hulb comments `{##}`
 
 **Styles.css Input**
 ```css {title: postcss.config.js}
@@ -49,9 +46,9 @@ Now you can write native hubl syntax inside of your css files and postcss will r
 
 **Styles.css output**
 ```css {title: postcss.config.js}
-{% if x %}
+/* {% if x %} */
 .test-selector {
   display: {{module.test_display}};
 }
-{% endif %}
+/* {% endif %} */
 ```

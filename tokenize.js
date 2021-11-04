@@ -89,7 +89,7 @@ module.exports = function tokenizer(input, options = {}) {
         if (css.charCodeAt(next) == PERCENT) {
           end = css.indexOf('%}', pos + 2) + 2
           currentToken = ['hubl-exp', css.slice(pos, end), pos, end]
-          pos = end
+          pos = end - 1
         } else if (css.charCodeAt(next) == OPEN_CURLY) {
           end = css.indexOf('}}', pos + 2) + 2;
           currentToken = ['hubl-stmt', css.slice(pos, end), pos, end];
