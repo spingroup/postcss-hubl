@@ -1,5 +1,9 @@
 # postcss-hubl syntax
 
+**Currently does not work with css-loader** *A PR has been made with css-loader team. Will remove warning when merged.* 
+
+In it's current state it only works reliably using postcss as a standalone plugin. 
+
 ## Purpose 
 
 Allows hubl expressions and hubl statements to be used in their native form in webpack builds.
