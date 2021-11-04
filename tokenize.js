@@ -91,7 +91,6 @@ module.exports = function tokenizer(input, options = {}) {
           currentToken = ['hubl-exp', css.slice(pos, end), pos, end]
           pos = end
         } else if (css.charCodeAt(next) == OPEN_CURLY) {
-          // console.log("Double Curly ====================")
           end = css.indexOf('}}', pos + 2) + 2;
           currentToken = ['hubl-stmt', css.slice(pos, end), pos, end];
           pos = end;

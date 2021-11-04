@@ -13,9 +13,6 @@ class HublParser extends Parser {
     let token
     while (!this.tokenizer.endOfFile()) {
       token = this.tokenizer.nextToken();
-      // let nextT = this.tokenizer.nextToken();
-      // this.logToken(token);
-      // console.log(token);
 
       switch (token[0]) {
         case 'space':
@@ -70,15 +67,13 @@ class HublParser extends Parser {
     node.raws.hubl = true;
     node.text = text;
     node.raws.left = "";
-    node.raws.right = '';
+    node.raws.right = '\n';
     node.raws.before = '\n';
     node.raws.after = '\n';
-    console.log('HUBL FIRE -------------------')
   }
 
   comment(token) {
     let node = new Comment()
-    console.log('comment log');
     this.init(node, token[2])
     node.source.end = this.getPosition(token[3] || token[2])
 
@@ -92,15 +87,6 @@ class HublParser extends Parser {
       node.text = match[2]
       node.raws.left = match[1]
       node.raws.right = match[3]
-    }
-  }
-  unknownWord(tokens) {
-    console.log("unknown-Words", tokens);
-    console.log("")
-    if (tokens[0][0] == 'word' && tokens[0][1] == '%') {
-      console.log('skipping error');
-    } else {
-      throw this.input.error('Unknown word', tokens[0][2])
     }
   }
 
