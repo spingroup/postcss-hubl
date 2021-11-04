@@ -27,7 +27,7 @@ All of which are extensions of their respective base postcss counterparts.
 const HublParser = require('@spingroup/postcss-hubl/hubl-parse');
 
 module.exports = {
-  parser: HublParse,
+  parser: HublParser,
   plugins: []
 };
 ```
