@@ -94,12 +94,10 @@ module.exports = function tokenizer(input, options = {}) {
         } else if (css.charCodeAt(next) == OPEN_CURLY) {
           end = css.indexOf('}}', pos + 2) + 2;
           currentToken = ['hubl-stmt', css.slice(pos, end), pos, end];
-          console.log('statementToken:', currentToken);
           pos = end - 1;
         } else if (css.charCodeAt(next) == POUND) {
           end = css.indexOf('#}', pos + 2) + 2;
           currentToken = ['hubl-comment', css.slice(pos, end), pos, end];
-          console.log('statementToken:', currentToken);
           pos = end - 1;
         } else {
           currentToken = [controlChar, controlChar, pos]

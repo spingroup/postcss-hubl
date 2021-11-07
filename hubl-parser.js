@@ -12,7 +12,6 @@ class HublParser extends Parser {
   }
   parse() {
     let token
-    console.log(this.input)
     while (!this.tokenizer.endOfFile()) {
       token = this.tokenizer.nextToken();
 
@@ -97,7 +96,6 @@ class HublParser extends Parser {
     node.prop = ''
     while (tokens.length) {
       let type = tokens[0][0]
-      console.log('type: ', type);
       if (type === ':' || type === 'space' || type === 'comment') {
         break
       }
