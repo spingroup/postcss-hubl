@@ -20,6 +20,7 @@ const ASTERISK = '*'.charCodeAt(0)
 const COLON = ':'.charCodeAt(0)
 const AT = '@'.charCodeAt(0)
 const PERCENT = '%'.charCodeAt(0)
+const POUND = '#'.charCodeAt(0)
 
 const RE_AT_END = /[\t\n\f\r "#'()/;[\\\]{}]/g
 const RE_WORD_END = /[\t\n\f\r !"#'():;@[\\\]{}]|\/(?=\*)/g
@@ -93,7 +94,13 @@ module.exports = function tokenizer(input, options = {}) {
         } else if (css.charCodeAt(next) == OPEN_CURLY) {
           end = css.indexOf('}}', pos + 2) + 2;
           currentToken = ['hubl-stmt', css.slice(pos, end), pos, end];
-          pos = end;
+          console.log('statementToken:', currentToken);
+          pos = end - 1;
+        } else if (css.charCodeAt(next) == POUND) {
+          end = css.indexOf('#}', pos + 2) + 2;
+          currentToken = ['hubl-comment', css.slice(pos, end), pos, end];
+          console.log('statementToken:', currentToken);
+          pos = end - 1;
         } else {
           currentToken = [controlChar, controlChar, pos]
         }
@@ -269,6 +276,7 @@ module.exports = function tokenizer(input, options = {}) {
     }
 
     pos++
+
     return currentToken
   }
 
