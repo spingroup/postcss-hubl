@@ -9,11 +9,12 @@ Allows hubl expressions and hubl statements to be used in their native form in w
 
 This is a postcss syntax as specified by the postcss documentation [here](https://github.com/postcss/postcss/blob/main/docs/syntax.md). 
 
-It contains 3 main pieces:
+It contains 4 main pieces:
 
 - Parser
 - Stringifier
 - Tokenizer
+- hubl-clean plugin
 
 All of which are extensions of their respective base postcss counterparts.
 
@@ -22,6 +23,8 @@ All of which are extensions of their respective base postcss counterparts.
 
 ## Usage
 
+### Add postcss-hubl to postcss
+Tell post css to use hubl-parser. During the compile process this will wrap all of your hubl in a special comment. This is necessary to keep valid css so that any other linters and tools that you use in your build process will still work. 
 **postcss.config.js**
 ```js {title: postcss.config.js}
 const HublParser = require('@spingroup/postcss-hubl/hubl-parse');
@@ -32,7 +35,20 @@ module.exports = {
 };
 ```
 
-Now you can write native hubl syntax inside of your css files and postcss will recognize it as valid markup. The parser will output the hubl inside of a comment so that any linting and other build tools will not fail. Your Hubl expressions will still run as long as they are not inside of hulb comments `{##}`
+### Use hubl-clean plugin
+
+The last step is to add the hubl-clean plugin to webpack.config.js. This plugin fires after webpack has finished compiling assets (after your other build tools have finished running) and will remove the comments from your hubl. You can then upload your dist directory to hubspot. 
+
+**webpack.config.js**
+```js {title: postcss.config.js}
+const HublClean = require('@spingroup/postcss-hubl/hubl-clean');
+
+module.exports = {
+  plugins: [
+    new HublClean(),
+  ]
+};
+```
 
 **Styles.css Input**
 ```css {title: postcss.config.js}
