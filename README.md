@@ -62,9 +62,18 @@ module.exports = {
 
 **Styles.css output**
 ```css {title: postcss.config.js}
-/* {% if x %} */
+/*~| {% if x %} |~*/
+.test-selector {
+  display: /*~| {{module.test_display}} |~*/;
+}
+/*~| {% endif %} |~*/
+```
+
+**Styles.css output after HublClean**
+```css {title: postcss.config.js}
+{% if x %} 
 .test-selector {
   display: {{module.test_display}};
 }
-/* {% endif %} */
+{% endif %}
 ```
