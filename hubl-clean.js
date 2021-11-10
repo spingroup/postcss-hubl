@@ -26,13 +26,13 @@ class HublClean {
         return results;
       };
 
-      function removeHublComment(path) {
+      function removeHublComment(cssPath) {
 
         // Split path name after dist
-        var relPath = path.split("/dist/")
+        var relPath = cssPath.split("dist")
 
         // add dist to path
-        relPath = "./dist/" + relPath[1];
+        relPath = path.normalize("./dist" + relPath[1]);
 
         // Read file
         var data = fs.readFileSync(relPath, "utf-8");
@@ -48,7 +48,8 @@ class HublClean {
 
       // Find all of the files in the dist folder 
       // that have the .css extension
-      var files = searchRecursive('./dist', '.css');
+
+      var files = searchRecursive(path.normalize('./dist'), '.css');
 
       // Remove all of the comments surrounding hubl
       files.forEach(path => {
