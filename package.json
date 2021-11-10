@@ -1,6 +1,6 @@
 {
   "name": "@spingroup/postcss-hubl",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Postcss-hubl syntax parser so that postcss can understand the hubl syntx",
   "main": "hubl-parse.js",
   "keywords": [
