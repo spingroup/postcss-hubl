@@ -1,5 +1,4 @@
 # postcss-hubl syntax
-**This plugin is still in testing phases. Consider it a beta. It will work with most webpack configurations**
 
 ## Purpose 
 
