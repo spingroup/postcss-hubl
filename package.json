@@ -7,6 +7,7 @@
     "hubspot",
     "hubl",
     "webpack",
+    "vite",
     "postcss",
     "postcss-hubl",
     "spingroup"
